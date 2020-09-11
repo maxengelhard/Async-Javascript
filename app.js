@@ -64,3 +64,109 @@
 
 
 // console.log('Finish');
+
+
+// console.log('Start');
+
+// function logInUser(email, password) {
+//     return new Promise((resolve, reject) => {
+//         setTimeout(() => {
+//             console.log('Now we have data')
+//           resolve({userEmail: email});  
+//         }, 2000)
+//     })
+    
+// }
+
+// function getUserVideos(email) {
+//     return new Promise((resolve, reject) => {
+//         setTimeout(() => {
+//             resolve(['video1', 'video2', 'video3']);
+//         },1000);
+//     })
+    
+// }
+
+// function videoDetails(video) {
+//     return new Promise((resolve,reject) => {
+//         setTimeout(() => {
+//             resolve('Title Of The Video')
+//         },1000);
+//     })
+   
+// }
+
+// // this is promises now
+
+// logInUser('me@joob.com', 'password')
+// .then(user => getUserVideos(user.email))
+// .then(videos => videoDetails(videos[0]))
+// .then(detial => console.log(detial));
+
+/////////// Promise All
+
+// const yt = new Promise(resolve => {
+//     setTimeout(() => {
+//         console.log('getting stuff from youtube');
+//         resolve({videos: [1,2,3,4]});
+//     }, 1000);
+// });
+
+// const fb = new Promise(resolve => {
+//     setTimeout(() => {
+//         console.log('getting stuff from facebook');
+//         resolve({messages: [1,2,3,4]});
+//     },2000);
+// });
+
+// Promise.all([yt,fb])
+// .then(result => console.log(result));
+
+
+// Async await
+
+function logInUser(email, password) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            console.log('Now we have data')
+          resolve({userEmail: email});  
+        }, 2000)
+    })
+    
+}
+
+function getUserVideos(email) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(['video1', 'video2', 'video3']);
+        },1000);
+    })
+    
+}
+
+function videoDetails(video) {
+    return new Promise((resolve,reject) => {
+        setTimeout(() => {
+            resolve('Title Of The Video')
+        },1000);
+    })
+   
+}
+
+async function displayUser() {
+    try {
+    const logUser = await logInUser('ed', 13485);
+    const videos = await getUserVideos(logUser.userEmail);
+    const detail = await videoDetails(videos[0]);
+    console.log(logUser);
+    console.log(videos);
+    console.log(detail);
+    }
+
+    catch(err) {
+        console.log('We could not get the video')
+    }
+
+}
+
+displayUser();
